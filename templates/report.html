@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Conferência da MSC</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="home" href="https://github.com/everton3x/report-css-framework" title="Home">
+    <link rel="stylesheet" type="text/css" href="assets/semantic.min.css">
+</head>
+<body>
+<main class="ui container">
+    <header class="ui blue center aligned segment">
+        <h1>Conferência da MSC</h1>
+        <h2>Município de Independência / RS</h2>
+        <div class="ui info message">
+            <p>Este relatório apresenta o resultado de testes de consistência dos dados carregados na Matriza de Saldos
+                Contábeis com data base de <b>{{ data_base }}</b>.</p>
+        </div>
+    </header>
+    <div class="ui section divider"></div>
+    <article>
+        <header class="ui teal segment">
+            <h1>Consistência entre MSC e PAD</h1>
+            <p>Nesta seção, comparamos os dados do PAD com os da MSC.</p>
+        </header>
+
+        <section class="ui grey segment">
+            <h2>Equivalências de contas entre BAL_VER e MSC</h2>
+            <p>Confere se todas as contas do BAL_VER estão na MSC.</p>
+            {% if teste_balver_msc %}
+            <table class="ui striped red unstackable table">
+                <caption class="ui header">Contas do BAL_VER não encontradas na MSC</caption>
+                <thead>
+                <tr>
+                    <th>Conta Contábil</th>
+                    <th class="right aligned">Saldo Inicial</th>
+                    <th class="right aligned">Débitos</th>
+                    <th class="right aligned">Créditos</th>
+                    <th class="right aligned">Saldo Final</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in teste_balver_msc %}
+                {% set cc = item.conta_contabil|string %}
+                <tr>
+                    <td>{{ "{}.{}.{}.{}.{}.{}.{}".format(cc[0:1], cc[1:2], cc[2:3], cc[3:4], cc[4:5], cc[5:7], cc[7:])
+                        }}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.saldo_inicial_valor).replace('.',
+                        ',').replace('_', '.') }} {{ item.saldo_inicial_natureza}}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.movimento_debito).replace('.', ',').replace('_',
+                        '.') }}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.movimento_credito).replace('.', ',').replace('_',
+                        '.') }}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.saldo_final_valor).replace('.', ',').replace('_',
+                        '.') }} {{ item.saldo_final_natureza}}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="ui positive message">
+                <p>Nenhuma inconsistência identificada.</p>
+            </div>
+            {% endif %}
+        </section>
+
+        <section class="ui grey segment">
+            <h2>Equivalência de contas entre MSC e BAL_VER</h2>
+            <p>Confere se todas as contas da MSC estão no BAL_VER.</p>
+            {% if teste_msc_balver %}
+            <table class="ui striped red unstackable table">
+                <caption class="ui header">Contas do BAL_VER não encontradas na MSC</caption>
+                <thead>
+                <tr>
+                    <th>Conta Contábil</th>
+                    <th class="right aligned">Saldo Inicial</th>
+                    <th class="right aligned">Débitos</th>
+                    <th class="right aligned">Créditos</th>
+                    <th class="right aligned">Saldo Final</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in teste_msc_balver %}
+                {% set cc = item.conta_contabil|string %}
+                <tr>
+                    <td>{{ "{}.{}.{}.{}.{}.{}.{}".format(cc[0:1], cc[1:2], cc[2:3], cc[3:4], cc[4:5], cc[5:7], cc[7:])
+                        }}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.saldo_inicial_valor).replace('.',
+                        ',').replace('_', '.') }} {{ item.saldo_inicial_natureza}}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.movimento_debito).replace('.', ',').replace('_',
+                        '.') }}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.movimento_credito).replace('.', ',').replace('_',
+                        '.') }}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.saldo_final_valor).replace('.', ',').replace('_',
+                        '.') }} {{ item.saldo_final_natureza}}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="ui positive message">
+                <p>Nenhuma inconsistência identificada.</p>
+            </div>
+            {% endif %}
+        </section>
+
+        <section class="ui grey segment">
+            <h2>Conferência da equivalência de saldos</h2>
+            <p>Confere so os saldos inicial e final e a movimentação a débito e a crédito são iguais para as contas que
+                estão no BAL_VER e na MSC.</p>
+            {% if teste_valores_balver_msc %}
+            <table class="ui striped red unstackable table">
+                <caption class="ui header">Contas do BAL_VER não encontradas na MSC</caption>
+                <thead>
+                <tr>
+                    <th>Conta Contábil</th>
+                    <th class="right aligned">Saldo Inicial PAD</th>
+                    <th class="right aligned">Saldo Inicial MSC</th>
+                    <th class="right aligned">Débitos PAD</th>
+                    <th class="right aligned">Débitos MSC</th>
+                    <th class="right aligned">Créditos</th>
+                    <th class="right aligned">Créditos PAD</th>
+                    <th class="right aligned">Créditos MSC</th>
+                    <th class="right aligned">Saldo Final PAD</th>
+                    <th class="right aligned">Saldo Final MSC</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in teste_valores_balver_msc %}
+                {% set cc = item.conta_contabil|string %}
+                <tr>
+                    <td>{{ "{}.{}.{}.{}.{}.{}.{}".format(cc[0:1], cc[1:2], cc[2:3], cc[3:4], cc[4:5], cc[5:7], cc[7:])
+                        }}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.saldo_inicial_valor_pad|float).replace('.',
+                        ',').replace('_', '.') }} {{ item.saldo_inicial_natureza_pad}}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.saldo_inicial_valor_msc|float).replace('.',
+                        ',').replace('_', '.') }} {{ item.saldo_inicial_natureza_msc}}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.movimento_debito_pad|float).replace('.', ',').replace('_',
+                        '.') }}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.movimento_debito_msc|float).replace('.', ',').replace('_',
+                        '.') }}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.movimento_credito_pad|float).replace('.', ',').replace('_',
+                        '.') }}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.movimento_credito_msc|float).replace('.', ',').replace('_',
+                        '.') }}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.saldo_final_valor_pad|float).replace('.', ',').replace('_',
+                        '.') }} {{ item.saldo_final_natureza_pad}}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.saldo_final_valor_msc|float).replace('.', ',').replace('_',
+                        '.') }} {{ item.saldo_final_natureza_msc}}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="ui positive message">
+                <p>Nenhuma inconsistência identificada.</p>
+            </div>
+            {% endif %}
+        </section>
+    </article>
+    <div class="ui section divider"></div>
+    <article>
+        <header class="ui teal segment">
+            <h1>Consistência entre as MSC Anterior e Atual</h1>
+        </header>
+
+        <section class="ui grey segment">
+            <h2>Saldo final anterior vs Saldo inicial atual</h2>
+            <p>Neste teste, comparam-se os saldos final da MSC anterior com o saldo inicial da MSC atual, por conta
+                qualificada.</p>
+            <dl>
+                <dt><b>Conta qualificada</b></dt>
+                <dd>é o conjunto do código contábil e das informações complementares.</dd>
+            </dl>
+            {% if teste_msc_anterior_atual %}
+            <table class="ui striped red unstackable table">
+                <caption class="ui header">Contas do BAL_VER não encontradas na MSC</caption>
+                <thead>
+                <tr>
+                    <th>Conta Contábil</th>
+                    <th>Informação Complementar</th>
+                    <th class="right aligned">Saldo Final MSC Anterior</th>
+                    <th class="right aligned">Saldo Inicial MSC Atual</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in teste_msc_anterior_atual %}
+                {% set cc = item.conta_contabil|string %}
+                <tr>
+                    <td>{{ "{}.{}.{}.{}.{}.{}.{}".format(cc[0:1], cc[1:2], cc[2:3], cc[3:4], cc[4:5], cc[5:7], cc[7:])
+                        }}
+                    </td>
+                    <td>{{ item.info_compl }}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.val_anterior).replace('.', ',').replace('_',
+                        '.') }} {{ item.nat_anterior }}
+                    </td>
+                    <td class="right aligned">{{ '{:_.2f}'.format(item.val_atual).replace('.', ',').replace('_',
+                        '.') }} {{ item.nat_atual }}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="ui positive message">
+                <p>Nenhuma inconsistência identificada.</p>
+            </div>
+            {% endif %}
+        </section>
+    </article>
+    <div class="ui section divider"></div>
+    <footer class="ui blue segment">
+        <p>Relatório gerado em
+            <time datetime="{{ datetime.now().strftime('%Y-%m-%d %H:%M:%S') }}">{{ datetime.now().strftime('%d/%m/%Y, %H:%M:%S') }}</time>
+        </p>
+    </footer>
+</main>
+</body>
+</html>

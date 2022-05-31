@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Conferência da MSC</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="home" href="https://github.com/everton3x/report-css-framework" title="Home">
+    <link rel="stylesheet" type="text/css" href="assets/semantic.min.css">
+</head>
+<body>
+<main class="ui container">
+    <header class="ui blue center aligned segment">
+        <h1>Conferência da MSC</h1>
+        <h2>Município de Independência / RS</h2>
+        <div class="ui info message">
+            <p>Este relatório apresenta o resultado de testes de consistência dos dados carregados na Matriza de Saldos
+                Contábeis com data base de <b>30/04/2022</b>.</p>
+        </div>
+    </header>
+    <div class="ui section divider"></div>
+    <article>
+        <header class="ui teal segment">
+            <h1>Consistência entre MSC e PAD</h1>
+            <p>Nesta seção, comparamos os dados do PAD com os da MSC.</p>
+        </header>
+
+        <section class="ui grey segment">
+            <h2>Equivalências de contas entre BAL_VER e MSC</h2>
+            <p>Confere se todas as contas do BAL_VER estão na MSC.</p>
+            
+            <table class="ui striped red unstackable table">
+                <caption class="ui header">Contas do BAL_VER não encontradas na MSC</caption>
+                <thead>
+                <tr>
+                    <th>Conta Contábil</th>
+                    <th class="right aligned">Saldo Inicial</th>
+                    <th class="right aligned">Débitos</th>
+                    <th class="right aligned">Créditos</th>
+                    <th class="right aligned">Saldo Final</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                
+                <tr>
+                    <td>1.2.3.9.1.01.03
+                    </td>
+                    <td class="right aligned">203,83 C
+                    </td>
+                    <td class="right aligned">203,83
+                    </td>
+                    <td class="right aligned">0,00
+                    </td>
+                    <td class="right aligned">0,00 
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+            
+        </section>
+
+        <section class="ui grey segment">
+            <h2>Equivalência de contas entre MSC e BAL_VER</h2>
+            <p>Confere se todas as contas da MSC estão no BAL_VER.</p>
+            
+            <table class="ui striped red unstackable table">
+                <caption class="ui header">Contas do BAL_VER não encontradas na MSC</caption>
+                <thead>
+                <tr>
+                    <th>Conta Contábil</th>
+                    <th class="right aligned">Saldo Inicial</th>
+                    <th class="right aligned">Débitos</th>
+                    <th class="right aligned">Créditos</th>
+                    <th class="right aligned">Saldo Final</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                
+                <tr>
+                    <td>1.1.1.1.1.30.00
+                    </td>
+                    <td class="right aligned">0,00 
+                    </td>
+                    <td class="right aligned">166.399,15
+                    </td>
+                    <td class="right aligned">166.399,15
+                    </td>
+                    <td class="right aligned">0,00 
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+            
+        </section>
+
+        <section class="ui grey segment">
+            <h2>Conferência da equivalência de saldos</h2>
+            <p>Confere so os saldos inicial e final e a movimentação a débito e a crédito são iguais para as contas que
+                estão no BAL_VER e na MSC.</p>
+            
+            <table class="ui striped red unstackable table">
+                <caption class="ui header">Contas do BAL_VER não encontradas na MSC</caption>
+                <thead>
+                <tr>
+                    <th>Conta Contábil</th>
+                    <th class="right aligned">Saldo Inicial PAD</th>
+                    <th class="right aligned">Saldo Inicial MSC</th>
+                    <th class="right aligned">Débitos PAD</th>
+                    <th class="right aligned">Débitos MSC</th>
+                    <th class="right aligned">Créditos</th>
+                    <th class="right aligned">Créditos PAD</th>
+                    <th class="right aligned">Créditos MSC</th>
+                    <th class="right aligned">Saldo Final PAD</th>
+                    <th class="right aligned">Saldo Final MSC</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                
+                <tr>
+                    <td>1.1.1.1.1.30.00
+                    </td>
+                    <td class="right aligned">0,00 
+                    </td>
+                    <td class="right aligned">0,00 
+                    </td>
+                    <td class="right aligned">0,00
+                    </td>
+                    <td class="right aligned">166.399,15
+                    </td>
+                    <td class="right aligned">0,00
+                    </td>
+                    <td class="right aligned">166.399,15
+                    </td>
+                    <td class="right aligned">0,00 
+                    </td>
+                    <td class="right aligned">0,00 
+                    </td>
+                </tr>
+                
+                
+                <tr>
+                    <td>1.2.3.9.1.01.03
+                    </td>
+                    <td class="right aligned">203,83 
+                    </td>
+                    <td class="right aligned">0,00 
+                    </td>
+                    <td class="right aligned">203,83
+                    </td>
+                    <td class="right aligned">0,00
+                    </td>
+                    <td class="right aligned">0,00
+                    </td>
+                    <td class="right aligned">0,00
+                    </td>
+                    <td class="right aligned">0,00 
+                    </td>
+                    <td class="right aligned">0,00 
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+            
+        </section>
+    </article>
+    <div class="ui section divider"></div>
+    <article>
+        <header class="ui teal segment">
+            <h1>Consistência entre as MSC Anterior e Atual</h1>
+        </header>
+
+        <section class="ui grey segment">
+            <h2>Saldo final anterior vs Saldo inicial atual</h2>
+            <p>Neste teste, comparam-se os saldos final da MSC anterior com o saldo inicial da MSC atual, por conta
+                qualificada.</p>
+            <dl>
+                <dt><b>Conta qualificada</b></dt>
+                <dd>é o conjunto do código contábil e das informações complementares.</dd>
+            </dl>
+            
+            <table class="ui striped red unstackable table">
+                <caption class="ui header">Contas do BAL_VER não encontradas na MSC</caption>
+                <thead>
+                <tr>
+                    <th>Conta Contábil</th>
+                    <th>Informação Complementar</th>
+                    <th class="right aligned">Saldo Final MSC Anterior</th>
+                    <th class="right aligned">Saldo Inicial MSC Atual</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                
+                <tr>
+                    <td>1.2.3.9.1.01.03
+                    </td>
+                    <td>PO:10131 FP:2
+                    </td>
+                    <td class="right aligned">203,83 C
+                    </td>
+                    <td class="right aligned">0,00 
+                    </td>
+                </tr>
+                
+                
+                <tr>
+                    <td>6.2.1.2.0.00.00
+                    </td>
+                    <td>PO:10131 NR:11130311 FR:1500
+                    </td>
+                    <td class="right aligned">0,00 D
+                    </td>
+                    <td class="right aligned">86.433,95 C
+                    </td>
+                </tr>
+                
+                
+                <tr>
+                    <td>6.2.1.2.0.00.00
+                    </td>
+                    <td>PO:10131 NR:11130311 FR:1500 CO:1070
+                    </td>
+                    <td class="right aligned">86.433,95 C
+                    </td>
+                    <td class="right aligned">0,00 D
+                    </td>
+                </tr>
+                
+                
+                <tr>
+                    <td>6.2.1.3.2.00.00
+                    </td>
+                    <td>PO:10131 NR:11125001 FR:1500
+                    </td>
+                    <td class="right aligned">0,00 D
+                    </td>
+                    <td class="right aligned">3.779,93 D
+                    </td>
+                </tr>
+                
+                
+                <tr>
+                    <td>6.2.1.3.2.00.00
+                    </td>
+                    <td>PO:10131 NR:11125001 FR:1500 CO:1002
+                    </td>
+                    <td class="right aligned">4.724,92 D
+                    </td>
+                    <td class="right aligned">944,99 D
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+            
+        </section>
+    </article>
+    <div class="ui section divider"></div>
+    <footer class="ui blue segment">
+        <p>Relatório gerado em
+            <time datetime="2022-05-31 13:29:15">31/05/2022, 13:29:15</time>
+        </p>
+    </footer>
+</main>
+</body>
+</html>
