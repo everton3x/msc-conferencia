@@ -17,6 +17,8 @@ diario = pd.read_csv(tce_4111, sep=';', thousands='.', decimal=',', encoding='cp
 
 # Salva a data_base
 data_base = balver['data_final'].unique()[0]
+data_base = datetime.strptime(data_base, '%Y-%m-%d')
+data_base = data_base.strftime('%d/%m/%Y')
 with open(r'cache/data_base.txt', 'w') as f:
     f.write(data_base)
 
