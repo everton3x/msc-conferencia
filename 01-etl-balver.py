@@ -4,16 +4,22 @@ Prepara o BAL_VER
 
 import pandas as pd
 from datetime import datetime, timedelta
+from charset_normalizer import from_path
+from io import StringIO
 
 # Importa as configurações
 exec(open('00-configuracoes.py').read())
 
 logging.info('Preparando BAL_VER...')
 
+# Detecta a codificação dos arquivos
+bal_ver = StringIO(str(from_path(bal_ver).best()))
+tce_4111 = StringIO(str(from_path(tce_4111).best()))
+
 # Carrega os dados
 logging.info('Carregando dados...')
-balver = pd.read_csv(bal_ver, sep=';', thousands='.', decimal=',', encoding='cp1252')
-diario = pd.read_csv(tce_4111, sep=';', thousands='.', decimal=',', encoding='cp1252', parse_dates=['data_lancamento'], infer_datetime_format=True, dayfirst=True)
+balver = pd.read_csv(bal_ver, sep=';', thousands='.', decimal=',')
+diario = pd.read_csv(tce_4111, sep=';', thousands='.', decimal=',', parse_dates=['data_lancamento'], infer_datetime_format=True, dayfirst=True)
 
 # Salva a data_base
 data_base = balver['data_final'].unique()[0]

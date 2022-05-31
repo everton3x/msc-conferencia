@@ -3,21 +3,21 @@ Configurações
 '''
 
 # Caminho para balancete.xlsx do mês da conferência
-msc_atual = r'C:\Users\Everton\OneDrive\Prefeitura\2022\MSC\2022-04\balancete.xls'
-#msc_atual = r'teste/msc_atual.xls'
+#msc_atual = r'C:\Users\Everton\OneDrive\Prefeitura\2022\MSC\2022-04\balancete.xls'
+msc_atual = r'teste/msc_atual.xls'
 
 # Caminho para o balancete.xlsx do mês anterior
-msc_anterior = r'C:\Users\Everton\OneDrive\Prefeitura\2022\MSC\2022-03\balancete.xls'
-#msc_anterior = r'teste/msc_anterior.xls'
+#msc_anterior = r'C:\Users\Everton\OneDrive\Prefeitura\2022\MSC\2022-03\balancete.xls'
+msc_anterior = r'teste/msc_anterior.xls'
 
 
 # Caminho para o BAL_VER.csv geerado pelo pad-converter
-bal_ver = r'C:\Users\Everton\OneDrive\Prefeitura\PAD\2022-04\BAL_VER.csv'
-#bal_ver = r'teste/BAL_VER.csv'
+#bal_ver = r'C:\Users\Everton\OneDrive\Prefeitura\PAD\2022-04\BAL_VER.csv'
+bal_ver = r'teste/BAL_VER.csv'
 
 # Caminho para o tce_4111.csv geerado pelo pad-converter
-tce_4111 = r'C:\Users\Everton\OneDrive\Prefeitura\PAD\2022-04\tce_4111.csv'
-#tce_4111 = r'teste/tce_4111.csv'
+#tce_4111 = r'C:\Users\Everton\OneDrive\Prefeitura\PAD\2022-04\tce_4111.csv'
+tce_4111 = r'teste/tce_4111.csv'
 
 
 
