@@ -37,7 +37,7 @@ data_corte = data_corte.strftime('%Y-%m-%d')
 balver = balver.query('escrituracao == "S" | escrituracao == "s"')
 
 # Carrega os mapeamentos
-cc_map = pd.read_excel('mapeamentos.xlsx', sheet_name='Contábil')
+cc_map = pd.read_excel(mapeamento_file, sheet_name='Contábil')
 cc_map.columns = ['cc_tce', 'cc_msc']
 
 # Troca os códigos do TCE pelos da STN conforme o mapeamento
